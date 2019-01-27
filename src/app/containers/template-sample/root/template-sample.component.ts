@@ -11,10 +11,15 @@ import {templateForm} from './locale'
 })
 export class TemplateSampleComponent implements OnInit {
 
+
   states: Array<String> = ['AR', 'AL', 'CA', 'DC'];
   constructor(@Inject(templateForm) public locales) { }
 
   ngOnInit() {
+  }
+
+  public addUser(myForm) {
+    console.log('Form', myForm);
   }
 
 }

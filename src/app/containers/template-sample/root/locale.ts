@@ -1,2 +1,21 @@
 export const templateForm = {
+  'templateFormTitle': 'Template Driven Forms',
+  'firstNameTitle': 'First Name',
+  'firstNamePlaceholder': 'Enter first name',
+  'lastNameTitle': 'Last Name',
+  'lastNamePlaceholder': 'Enter last name',
+  'addressOptionsTitle': 'Choose Type',
+  'addressPermanentOption': 'Permanent',
+  'addressCorrespondanceOption': 'Correspondance',
+  'streetAddressTitle': 'Street Address',
+  'streetAddressPlaceholder': 'Enter street address',
+  'cityAddressTitle': 'City',
+  'cityAddressPlaceholder': 'Enter city',
+  'stateAddressTitle': 'State',
+  'stateOptions': 'Choose...',
+  'zipCodeTitle': 'Zip Code',
+  'zipCodePlaceholder': 'Enter city',
+  'buttonTitle': 'Submit',
+  'requiredError': 'Field is required',
+  'optionsError': 'Pick one option'
 };
