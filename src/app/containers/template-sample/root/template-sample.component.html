@@ -1,6 +1,6 @@
 <div style="padding-right:15px;" class="container-fluid">
 
-  <!-- form header -->
+  <!--form header-->
   <div class="row">
     <div class="col">
       <h1>{{locales.templateFormTitle}}</h1>
@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label>First Name</label>
+              <label>{{locales.firstNameTitle}}</label>
               <input type="text" ngModel name="firstName"
                      #firstName="ngModel"
                      [ngClass]="{'form-control': true,
@@ -25,28 +25,31 @@
                      'is-valid': firstName?.valid && firstName?.touched}"
                      required
                      minlength="2"
-                     id="fnText" placeholder="Enter first name">
+                     id="fnText" placeholder={{locales.firstNamePlaceholder}}>
               <small *ngIf="firstName?.errors?.required && firstName?.touched"
-                     class="form-text custom-invalid-feedback">Field is required
+                     class="form-text custom-invalid-feedback">
+                {{locales.requiredError}}
               </small>
               <small *ngIf="firstName?.errors?.minlength && firstName?.touched"
-                     class="form-text custom-invalid-feedback">First Name requires atleast 2 characters.
+                     class="form-text custom-invalid-feedback">
+                {{locales.firstNameError}}
               </small>
             </div>
           </div>
 
           <div class="col">
             <div class="form-group">
-              <label>Last Name</label>
+              <label>{{locales.lastNameTitle}}</label>
               <input type="text" ngModel name="lastName"
                      required
                      #lastName="ngModel"
                      [ngClass]="{'form-control': true,
                      'is-invalid': !lastName?.valid && lastName?.touched,
                      'is-valid': lastName?.valid && lastName?.touched}"
-                     placeholder="Enter last name">
-              <small *ngIf="lastName?.errors?.required && firstName?.touched"
-                     class="form-text custom-invalid-feedback">Field is required
+                     placeholder={{locales.lastNamePlaceholder}}>
+              <small *ngIf="lastName?.errors?.required && lastName?.touched"
+                     class="form-text custom-invalid-feedback">
+                {{locales.requiredError}}
               </small>
             </div>
           </div>
@@ -64,7 +67,7 @@
         <!-- address form portion -->
         <div class="row" ngModelGroup="address">
           <div class="col-12">
-            <label class="form-check-inline">Choose Type</label>
+            <label class="form-check-inline">{{locales.addressOptionsTitle}}</label>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" ngModel
                      #addressType="ngModel"
@@ -73,7 +76,9 @@
                      'is-invalid' : !addressType?.valid && addressType?.touched,
                      'is-valid' : addressType?.valid && addressType?.touched}"
                      name="addressType" value="permanent">
-              <label class="form-check-label">Permanent</label>
+              <label class="form-check-label">
+                {{locales.addressPermanentOption}}
+              </label>
             </div>
 
             <div class="form-check form-check-inline">
@@ -84,7 +89,9 @@
                      'is-valid' : addressType?.valid && addressType?.touched}"
                      required
                      name="addressType" value="correspondance">
-              <label class="form-check-label">Correspondance</label>
+              <label class="form-check-label">
+                {{locales.addressCorrespondanceOption}}
+              </label>
             </div>
             <small *ngIf="addressType?.errors?.required && addressType?.touched"
                    class="form-check-inline form-text custom-invalid-feedback">Pick one option.
@@ -92,16 +99,17 @@
           </div>
           <div class="col-12">
             <div class="form-group">
-              <label>Street Address</label>
+              <label>{{locales.streetAddressTitle}}</label>
               <input type="text" class="form-control" ngModel
                      required
                      #streetAddress="ngModel"
                      [ngClass]="{'form-control' : true,
                      'is-invalid' : !streetAddress?.valid && streetAddress?.touched,
                      'is-valid' : streetAddress?.valid && streetAddress?.touched}"
-                     name="streetAddress" placeholder="Enter street address">
+                     name="streetAddress" placeholder={{locales.streetAddressPlaceholder}}>
               <small *ngIf="streetAddress?.errors?.required && streetAddress?.touched"
-                     class="form-text custom-invalid-feedback">Field is required
+                     class="form-text custom-invalid-feedback">
+                {{locales.requiredError}}
               </small>
             </div>
           </div>
@@ -109,22 +117,24 @@
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label>City</label>
+                  <label>{{locales.cityAddressTitle}}</label>
                   <input type="text" ngModel
                          required
                          #city="ngModel"
                          [ngClass]="{'form-control' : true,
                          'is-invalid' : !city?.valid && city?.touched,
                          'is-valid' : city?.valid && city?.touched}"
-                         name="city" class="form-control" placeholder="Enter city">
+                         name="city" class="form-control"
+                         placeholder={{locales.cityAddressPlaceholder}}>
                   <small *ngIf="city?.errors?.required && city?.touched"
-                         class="form-text custom-invalid-feedback">Field is required
+                         class="form-text custom-invalid-feedback">
+                    {{locales.cityAddressPlaceholder}}
                   </small>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label>State</label>
+                  <label>{{locales.stateAddressTitle}}</label>
                   <select id="inputState" ngModel
                           required
                           name="state"
@@ -133,11 +143,12 @@
                           'is-invalid' : !state?.valid && state?.touched,
                           'is-valid' : state?.valid && state?.touched}"
                           name="state" class="form-control">
-                    <option selected value="">Choose...</option>
+                    <option selected value="">{{locales.stateOptions}}</option>
                     <option *ngFor="let item of states" [value]="item">{{item}}</option>
                   </select>
                   <small *ngIf="state?.errors?.required && state?.touched"
-                         class="form-text custom-invalid-feedback">Field is required
+                         class="form-text custom-invalid-feedback">
+                    {{locales.requiredError}}
                   </small>
                 </div>
               </div>
@@ -151,10 +162,12 @@
                          'is-valid' : zip?.valid && zip?.touched}"
                          appZipValidator
                          name="zipcode" class="form-control" placeholder="Enter city">
-                  <small *ngIf="zip?.errors?.cus_required && zip?.touched" class="form-text custom-invalid-feedback">
+                  <small *ngIf="zip?.errors?.cus_required && zip?.touched"
+                         class="form-text custom-invalid-feedback">
                     {{zip?.errors?.cus_required}}
                   </small>
-                  <small *ngIf="zip?.errors?.cus_pattern && zip?.touched" class="form-text custom-invalid-feedback">
+                  <small *ngIf="zip?.errors?.cus_pattern && zip?.touched"
+                         class="form-text custom-invalid-feedback">
                     {{zip?.errors?.cus_pattern}}
                   </small>
                 </div>
@@ -176,7 +189,8 @@
             <button type="button"
                     [disabled]="!myForm.form.valid"
                     class="btn btn-primary"
-                    (click)=" addUser(myForm)">Submit
+                    (click)=" addUser(myForm)">
+              {{locales.buttonTitle}}
             </button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-export const templateForm = {
+export const locale = {
   'templateFormTitle': 'Template Driven Forms',
   'firstNameTitle': 'First Name',
   'firstNamePlaceholder': 'Enter first name',
@@ -17,5 +17,6 @@ export const templateForm = {
   'zipCodePlaceholder': 'Enter city',
   'buttonTitle': 'Submit',
   'requiredError': 'Field is required',
+  'firstNameError': 'First Name requires atleast 2 characters.',
   'optionsError': 'Pick one option'
 };
