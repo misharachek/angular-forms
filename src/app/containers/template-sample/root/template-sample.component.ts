@@ -13,7 +13,9 @@ export class TemplateSampleComponent implements OnInit {
 
 
   states: Array<String> = ['AR', 'AL', 'CA', 'DC'];
-  constructor(@Inject(locale) public locales) { }
+
+  constructor(@Inject(locale) public locales) {
+  }
 
   ngOnInit() {
   }

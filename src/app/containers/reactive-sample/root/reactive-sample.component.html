@@ -3,30 +3,57 @@
   <!-- form header -->
   <div class="row">
     <div class="col">
-      <h1>Reactive Forms</h1>
+      <h1>{{locales.reactiveFormTitle}}</h1>
       <hr>
     </div>
   </div>
 
   <!-- main form -->
   <div class="row">
-    <form action="" style="width:100%;">
+    <form [formGroup]="registrationForm" style="width:100%;">
       <div class="col">
 
-        <!-- personal info -->
+        <!-- first name -->
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="fnText">First Name</label>
-              <input type="text" class="form-control" id="fnText" placeholder="Enter first name">
-              <small id="fnHelp" class="form-text custom-invalid-feedback">Field is required</small>
+              <label>{{locales.firstNameTitle}}</label>
+              <input type="text"
+                     class="form-control"
+                     placeholder={{locales.firstNamePlaceholder}}
+                     formControlName={{registrationControls.firstName}}>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.firstName].getError('required') &&
+                     registrationForm.controls[registrationControls.firstName].touched">
+                {{locales.requiredError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.firstName].getError('minlength') &&
+                     registrationForm.controls[registrationControls.firstName].touched">
+                {{locales.shortError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.firstName].getError('maxlength') &&
+                     registrationForm.controls[registrationControls.firstName].touched">
+                {{locales.longError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.firstName].getError('pattern') &&
+                     registrationForm.controls[registrationControls.firstName].touched">
+                {{locales.pattern}}
+              </small>
             </div>
           </div>
+
+          <!-- last name -->
           <div class="col">
             <div class="form-group">
-              <label for="lnText">Last Name</label>
-              <input type="text" class="form-control" id="lnText" placeholder="Enter last name">
-              <small id="fnHelp" class="form-text custom-invalid-feedback">Field is required</small>
+              <label>{{locales.lastNameTitle}}</label>
+              <input type="text"
+                     class="form-control"
+                     placeholder={{locales.lastNamePlaceholder}}
+                     formControlName={{registrationControls.lastName}}>
+              <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
             </div>
           </div>
         </div>
@@ -43,52 +70,98 @@
         <!-- address form portion -->
         <div class="row">
           <div class="col-12">
-            <label for="" class="form-check-inline">Choose Type</label>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="permanent">
-              <label class="form-check-label" for="inlineRadio1">Permanent</label>
+            <label class="form-check-inline reset-margin">
+              {{locales.addressOptionsTitle}}
+            </label>
+            <!--<div class="form-check form-check-inline">-->
+              <!--<input class="form-check-input"-->
+                     <!--type="radio"-->
+                     <!--name="inlineRadioOptions"-->
+                     <!--id="inlineRadio1"-->
+                     <!--value="permanent">-->
+              <!--<label class="form-check-label">{{locales.addressPermanentOption}}</label>-->
+            <!--</div>-->
+
+            <!--<div class="form-check form-check-inline">-->
+              <!--<input class="form-check-input"-->
+                     <!--type="radio"-->
+                     <!--name="inlineRadioOptions"-->
+                     <!--value="temporary">-->
+              <!--<label class="form-check-label">{{locales.addressCorrespondanceOption}}</label>-->
+            <!--</div>-->
+            <small class="form-check-inline form-text custom-invalid-feedback">
+              {{locales.optionsError}}
+            </small>
+
+            <!-- seperator -->
+            <div class="row">
+              <div class="col">
+                <hr>
+              </div>
+            </div>
+
+            <!--date picker-->
+            <div>
+              <label class="form-check-inline">{{locales.expiryDate}}</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="temporary">
-              <label class="form-check-label" for="inlineRadio2">Temporary</label>
+              <input type="date"
+                     class="form-control"
+                     name="expiryDate"
+                     formControlName={{registrationControls.date}}>
             </div>
-            <label class="form-check-inline" for="inlineRadio2">Expiry Date</label>
-            <div class="form-check form-check-inline">              
-              <input type="date" class="form-control" name="expiryDate" id="dateInput1">
-            </div>
-            <small class="form-check-inline form-text custom-invalid-feedback">Pick one option.</small>
           </div>
-          <div class="col-12">
+
+          <!--street-->
+          <div class="col-12" style="padding-top: 30px">
             <div class="form-group">
-              <label for="addText">Street Address</label>
-              <input type="text" class="form-control" id="addText" placeholder="Enter street address">
-              <small class="form-text custom-invalid-feedback">Field is required</small>
+              <label>{{locales.streetAddressTitle}}</label>
+              <input type="text"
+                     class="form-control"
+                     placeholder={{locales.streetAddressPlaceholder}}
+                     formControlName={{registrationControls.streetAddress}}>
+              <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
             </div>
           </div>
+
+          <!--city-->
           <div class="col-12">
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label for="city">City</label>
-                  <input type="text" class="form-control" id="city" placeholder="Enter city">
-                  <small class="form-text custom-invalid-feedback">Field is required</small>
+                  <label>{{locales.cityAddressTitle}}</label>
+                  <input type="text"
+                         class="form-control"
+                         placeholder={{locales.cityAddressPlaceholder}}
+                         formControlName={{registrationControls.cityAddress}}>
+                  <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
                 </div>
               </div>
+
+              <!--state-->
               <div class="col">
                 <div class="form-group">
-                  <label for="state">State</label>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let item of states" [value]="item">{{item}}</option>
+                  <label>{{locales.stateAddressTitle}}</label>
+                  <select class="form-control"
+                          formControlName={{registrationControls.stateAddress}}>
+                    <option selected>{{locales.stateOptions}}</option>
+                    <option *ngFor="let item of states"
+                            [value]="item">{{item}}
+                    </option>
                   </select>
-                  <small class="form-text custom-invalid-feedback">Field is required</small>
+                  <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
                 </div>
               </div>
+
+              <!--zip code-->
               <div class="col">
                 <div class="form-group">
-                  <label for="zipcode">Zip Code</label>
-                  <input type="text" class="form-control" id="zipcode" placeholder="Enter city">
-                  <small class="form-text custom-invalid-feedback">Field is required</small>
+                  <label>{{locales.zipCodeTitle}}</label>
+                  <input type="text"
+                         class="form-control"
+                         placeholder={{locales.zipCodePlaceholder}}
+                         formControlName={{registrationControls.zipCodeAddress}}>
+                  <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
                 </div>
               </div>
             </div>
@@ -105,10 +178,15 @@
         <!-- final action buttons -->
         <div class="row justify-content-center">
           <div class="col-2">
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary"
+                    (click)="submitForm()">
+              {{locales.buttonTitle}}
+            </button>
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+<!--[disabled]="!(registrationForm.valid && phoneVerificationForm.valid)">{{locales.ok | translate}}-->

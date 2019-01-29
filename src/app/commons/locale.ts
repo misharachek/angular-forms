@@ -1,5 +1,6 @@
 export const locale = {
   'templateFormTitle': 'Template Driven Forms',
+  'reactiveFormTitle': 'Reactive Forms',
   'firstNameTitle': 'First Name',
   'firstNamePlaceholder': 'Enter first name',
   'lastNameTitle': 'Last Name',
@@ -16,7 +17,12 @@ export const locale = {
   'zipCodeTitle': 'Zip Code',
   'zipCodePlaceholder': 'Enter city',
   'buttonTitle': 'Submit',
-  'requiredError': 'Field is required',
   'firstNameError': 'First Name requires atleast 2 characters.',
-  'optionsError': 'Pick one option'
+  'optionsError': 'Pick one option',
+  'expiryDate': 'Expiry Date',
+  // errors
+  'requiredError': 'Field is required',
+  'shortError': 'Field is too short. Minimum 2 characters are allowed.',
+  'longError': 'Field is too long. Only 64 characters are allowed.',
+  'pattern': 'Field name is incorrect. It consists only characters and special symbols.'
 };

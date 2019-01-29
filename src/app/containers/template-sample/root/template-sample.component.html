@@ -94,7 +94,8 @@
               </label>
             </div>
             <small *ngIf="addressType?.errors?.required && addressType?.touched"
-                   class="form-check-inline form-text custom-invalid-feedback">Pick one option.
+                   class="form-check-inline form-text custom-invalid-feedback">
+              {{locales.optionsError}}
             </small>
           </div>
           <div class="col-12">
@@ -154,14 +155,15 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label>Zip Code</label>
+                  <label>{{locales.zipCodeTitle}}</label>
                   <input type="text" ngModel
                          #zip="ngModel"
                          [ngClass]="{'form-control' : true,
                          'is-invalid' : !zip?.valid && zip?.touched,
                          'is-valid' : zip?.valid && zip?.touched}"
                          appZipValidator
-                         name="zipcode" class="form-control" placeholder="Enter city">
+                         name="zipcode" class="form-control"
+                         placeholder={{locales.zipCodePlaceholder}}>
                   <small *ngIf="zip?.errors?.cus_required && zip?.touched"
                          class="form-text custom-invalid-feedback">
                     {{zip?.errors?.cus_required}}
