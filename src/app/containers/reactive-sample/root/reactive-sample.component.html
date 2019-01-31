@@ -20,6 +20,7 @@
               <label>{{locales.firstNameTitle}}</label>
               <input type="text"
                      class="form-control"
+                     [(ngModel)]="model.firstName"
                      placeholder={{locales.firstNamePlaceholder}}
                      formControlName={{registrationControls.firstName}}>
               <small class="form-text custom-invalid-feedback"
@@ -51,9 +52,29 @@
               <label>{{locales.lastNameTitle}}</label>
               <input type="text"
                      class="form-control"
+                     [(ngModel)]="model.lastName"
                      placeholder={{locales.lastNamePlaceholder}}
                      formControlName={{registrationControls.lastName}}>
-              <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.lastName].getError('required') &&
+                     registrationForm.controls[registrationControls.lastName].touched">
+                {{locales.requiredError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.lastName].getError('minlength') &&
+                     registrationForm.controls[registrationControls.lastName].touched">
+                {{locales.shortError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.lastName].getError('maxlength') &&
+                     registrationForm.controls[registrationControls.lastName].touched">
+                {{locales.longError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.lastName].getError('pattern') &&
+                     registrationForm.controls[registrationControls.lastName].touched">
+                {{locales.pattern}}
+              </small>
             </div>
           </div>
         </div>
@@ -66,40 +87,6 @@
           </div>
         </div>
 
-
-        <!-- address form portion -->
-        <div class="row">
-          <div class="col-12">
-            <label class="form-check-inline reset-margin">
-              {{locales.addressOptionsTitle}}
-            </label>
-            <!--<div class="form-check form-check-inline">-->
-              <!--<input class="form-check-input"-->
-                     <!--type="radio"-->
-                     <!--name="inlineRadioOptions"-->
-                     <!--id="inlineRadio1"-->
-                     <!--value="permanent">-->
-              <!--<label class="form-check-label">{{locales.addressPermanentOption}}</label>-->
-            <!--</div>-->
-
-            <!--<div class="form-check form-check-inline">-->
-              <!--<input class="form-check-input"-->
-                     <!--type="radio"-->
-                     <!--name="inlineRadioOptions"-->
-                     <!--value="temporary">-->
-              <!--<label class="form-check-label">{{locales.addressCorrespondanceOption}}</label>-->
-            <!--</div>-->
-            <small class="form-check-inline form-text custom-invalid-feedback">
-              {{locales.optionsError}}
-            </small>
-
-            <!-- seperator -->
-            <div class="row">
-              <div class="col">
-                <hr>
-              </div>
-            </div>
-
             <!--date picker-->
             <div>
               <label class="form-check-inline">{{locales.expiryDate}}</label>
@@ -108,7 +95,13 @@
               <input type="date"
                      class="form-control"
                      name="expiryDate"
+                     [(ngModel)]="model.date"
                      formControlName={{registrationControls.date}}>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.date].getError('required') &&
+                     registrationForm.controls[registrationControls.date].touched">
+                {{locales.requiredError}}
+              </small>
             </div>
           </div>
 
@@ -118,9 +111,29 @@
               <label>{{locales.streetAddressTitle}}</label>
               <input type="text"
                      class="form-control"
+                     [(ngModel)]="model.streetAddress"
                      placeholder={{locales.streetAddressPlaceholder}}
                      formControlName={{registrationControls.streetAddress}}>
-              <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.streetAddress].getError('required') &&
+                     registrationForm.controls[registrationControls.streetAddress].touched">
+                {{locales.requiredError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.streetAddress].getError('minlength') &&
+                     registrationForm.controls[registrationControls.streetAddress].touched">
+                {{locales.shortError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.streetAddress].getError('maxLength') &&
+                     registrationForm.controls[registrationControls.streetAddress].touched">
+                {{locales.longError}}
+              </small>
+              <small class="form-text custom-invalid-feedback"
+                     *ngIf="registrationForm.controls[registrationControls.streetAddress].getError('pattern') &&
+                     registrationForm.controls[registrationControls.streetAddress].touched">
+                {{locales.pattern}}
+              </small>
             </div>
           </div>
 
@@ -132,24 +145,29 @@
                   <label>{{locales.cityAddressTitle}}</label>
                   <input type="text"
                          class="form-control"
+                         [(ngModel)]="model.cityAddress"
                          placeholder={{locales.cityAddressPlaceholder}}
                          formControlName={{registrationControls.cityAddress}}>
-                  <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
-                </div>
-              </div>
-
-              <!--state-->
-              <div class="col">
-                <div class="form-group">
-                  <label>{{locales.stateAddressTitle}}</label>
-                  <select class="form-control"
-                          formControlName={{registrationControls.stateAddress}}>
-                    <option selected>{{locales.stateOptions}}</option>
-                    <option *ngFor="let item of states"
-                            [value]="item">{{item}}
-                    </option>
-                  </select>
-                  <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.cityAddress].getError('required') &&
+                     registrationForm.controls[registrationControls.cityAddress].touched">
+                    {{locales.requiredError}}
+                  </small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.cityAddress].getError('minlength') &&
+                     registrationForm.controls[registrationControls.cityAddress].touched">
+                    {{locales.shortError}}
+                  </small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.cityAddress].getError('maxLength') &&
+                     registrationForm.controls[registrationControls.cityAddress].touched">
+                    {{locales.longError}}
+                  </small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.cityAddress].getError('pattern') &&
+                     registrationForm.controls[registrationControls.cityAddress].touched">
+                    {{locales.pattern}}
+                  </small>
                 </div>
               </div>
 
@@ -159,14 +177,33 @@
                   <label>{{locales.zipCodeTitle}}</label>
                   <input type="text"
                          class="form-control"
+                         [(ngModel)]="model.zipCodeAddress"
                          placeholder={{locales.zipCodePlaceholder}}
                          formControlName={{registrationControls.zipCodeAddress}}>
-                  <small class="form-text custom-invalid-feedback">{{locales.requiredError}}</small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.zipCodeAddress].getError('required') &&
+                     registrationForm.controls[registrationControls.zipCodeAddress].touched">
+                    {{locales.requiredError}}
+                  </small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.zipCodeAddress].getError('minlength') &&
+                     registrationForm.controls[registrationControls.zipCodeAddress].touched">
+                    {{locales.shortError}}
+                  </small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.zipCodeAddress].getError('maxLength') &&
+                     registrationForm.controls[registrationControls.zipCodeAddress].touched">
+                    {{locales.longError}}
+                  </small>
+                  <small class="form-text custom-invalid-feedback"
+                         *ngIf="registrationForm.controls[registrationControls.zipCodeAddress].getError('pattern') &&
+                     registrationForm.controls[registrationControls.zipCodeAddress].touched">
+                    {{locales.pattern}}
+                  </small>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
         <!-- seperator -->
         <div class="row">
@@ -179,14 +216,12 @@
         <div class="row justify-content-center">
           <div class="col-2">
             <button type="button" class="btn btn-primary"
+                    [disabled]="!registrationForm.valid"
                     (click)="submitForm()">
               {{locales.buttonTitle}}
             </button>
           </div>
         </div>
-      </div>
     </form>
   </div>
 </div>
-
-<!--[disabled]="!(registrationForm.valid && phoneVerificationForm.valid)">{{locales.ok | translate}}-->

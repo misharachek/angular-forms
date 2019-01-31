@@ -1,6 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
 import {locale} from 'app/commons/locale';
+import {User} from './user';
 
 @Component({
   selector: 'app-reactive-sample',
@@ -12,18 +13,16 @@ import {locale} from 'app/commons/locale';
 })
 export class ReactiveSampleComponent implements OnInit {
 
-  public states: Array<String> = ['AR', 'AL', 'CA', 'DC'];
   public registrationForm: FormGroup;
   public alphabeticAndSpecialSymbolsPattern = '^[a-zA-Z!@#$&()\\-`.+,/\"]*$';
+  public model = new User();
 
   registrationControls = {
     firstName: 'firstName',
     lastName: 'lastName',
-    // addressOptions: 'addressOptions',
     date: 'date',
     streetAddress: 'streetAddress',
     cityAddress: 'cityAddress',
-    stateAddress: 'stateAddress',
     zipCodeAddress: 'zipCodeAddress'
   };
 
@@ -44,9 +43,7 @@ export class ReactiveSampleComponent implements OnInit {
       [this.registrationControls.date]: new FormControl(null),
       [this.registrationControls.streetAddress]: new FormControl(null),
       [this.registrationControls.cityAddress]: new FormControl(null),
-      [this.registrationControls.stateAddress]: new FormControl(null),
       [this.registrationControls.zipCodeAddress]: new FormControl(null),
-      // [this.registrationControls.isTermsAcceptance]: new FormControl(null),
     };
     this.registrationForm = new FormGroup(controls);
   }
@@ -85,10 +82,6 @@ export class ReactiveSampleComponent implements OnInit {
       Validators.pattern(this.alphabeticAndSpecialSymbolsPattern)
     ];
 
-    const validatorsStateAddress = [
-      Validators.required
-    ];
-
     const validatorsZipCodeAddress = [
       Validators.required,
       Validators.minLength(5),
@@ -102,12 +95,11 @@ export class ReactiveSampleComponent implements OnInit {
     this.registrationForm.controls[this.registrationControls.date].setValidators(validatorsDate);
     this.registrationForm.controls[this.registrationControls.streetAddress].setValidators(validatorsStreetAddress);
     this.registrationForm.controls[this.registrationControls.cityAddress].setValidators(validatorsCityAddress);
-    this.registrationForm.controls[this.registrationControls.stateAddress].setValidators(validatorsStateAddress);
     this.registrationForm.controls[this.registrationControls.zipCodeAddress].setValidators(validatorsZipCodeAddress);
   }
 
   public submitForm() {
     console.log('My form', this.registrationForm);
+    console.log('User', this.model);
   }
-
 }

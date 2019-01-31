@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'template', component: TemplateSampleComponent},
   {path: 'reactive', component: ReactiveSampleComponent},
   {path: 'nested', component: NestedFormComponent},
-]
+];
 
 @NgModule({
   declarations: [
