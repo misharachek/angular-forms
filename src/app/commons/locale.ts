@@ -1,6 +1,7 @@
 export const locale = {
   'templateFormTitle': 'Template Driven Forms',
   'reactiveFormTitle': 'Reactive Forms',
+  'customFormTitle': 'Custom Forms',
   'firstNameTitle': 'First Name',
   'firstNamePlaceholder': 'Enter first name',
   'lastNameTitle': 'Last Name',
@@ -20,6 +21,8 @@ export const locale = {
   'firstNameError': 'First Name requires atleast 2 characters.',
   'optionsError': 'Pick one option',
   'expiryDate': 'Expiry Date',
+  'isPrimaryCheckbox': 'Is Primary Address',
+  'address': 'Address 1',
   // errors
   'requiredError': 'Field is required',
   'shortError': 'Field is too short. Minimum 2 characters are allowed.',
